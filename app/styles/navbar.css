@@ -1,0 +1,60 @@
+nav {
+  background: linear-gradient(180deg, var(--primal) 0%, #efeae7 100%);
+  padding: 0.75rem 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo {
+  height: 25px;
+  width: auto;
+}
+
+.logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.logo-link:hover {
+  opacity: 0.85;
+}
+
+.login-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: var(--primal-low);
+  color: #1f2933;
+  text-decoration: none;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  margin-left: auto;
+}
+
+.login-button:hover {
+  background: var(--primal);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+.login-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.login-icon {
+  width: 12px;
+  height: 12px;
+}

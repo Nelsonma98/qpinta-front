@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 interface Product {
   id: number;
@@ -57,15 +58,20 @@ export default function Home() {
     <div className="products-container">
       <div className="products-grid">
         {products.map((product) => (
-          <div key={product.id} className="product-card">
-            <div className="product-image-container">
-              <img src={product.image} alt={`Producto ${product.id}`} className="product-image" />
+          <Link key={product.id} href={`/product/${product.id}`} className="product-link">
+            <div className="product-card">
+              <div className="product-image-container">
+                <img src={product.image} alt={`Producto ${product.id}`} className="product-image" />
+              </div>
+              <div className="product-details">
+                <div className="product-price-row">
+                  <p className="product-price">${product.price.toFixed(2)}</p>
+                  <p className="product-id">ID.{product.id}</p>
+                </div>
+                <p className="product-size">Talla: {product.size}</p>
+              </div>
             </div>
-            <div className="product-details">
-              <p className="product-price">${product.price.toFixed(2)}</p>
-              <p className="product-size">Talla: {product.size}</p>
-            </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

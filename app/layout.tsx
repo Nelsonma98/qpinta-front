@@ -6,6 +6,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Q`Pinta",
   description: "Catálogo digital de tienda de ropa de segunda mano",
+  icons: {
+    icon: "/mini-logo.png",
+  },
 };
 
 export default function RootLayout({
