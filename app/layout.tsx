@@ -24,7 +24,7 @@ export default function RootLayout({
             <Link href="/" className="logo-link" aria-label="Ir a inicio">
               <img src="/logo-qpinta.png" alt="Logo" className="logo" />
             </Link>
-            <a href="/login" className="login-button" aria-label="Ir al login">
+            <a href="/admin/login" className="login-button" aria-label="Ir al login">
               <svg
                 className="login-icon"
                 viewBox="0 0 24 24"
