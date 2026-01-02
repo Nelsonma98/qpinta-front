@@ -73,7 +73,7 @@
 }
 
 .login-box button:hover:not(:disabled) {
-  background: #d8006f;
+  background: var(--clic-color);
 }
 
 .login-box button:disabled {

@@ -94,7 +94,7 @@
 }
 
 .dashboard-card button:hover {
-  background: #d8006f;
+  background: var(--clic-color);
 }
 
 @media (max-width: 768px) {
