@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 interface Product {
   id: number;
@@ -16,16 +17,21 @@ export default function Home() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get('category');
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://uxjprzqkuyrvqclktcat.supabase.co';
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
+        const filter = categoryParam ? `&categoryId=eq.${categoryParam}` : '';
         const response = await fetch(
-          'https://uxjprzqkuyrvqclktcat.supabase.co/rest/v1/products?select=*',
+          `${supabaseUrl}/rest/v1/products?select=*${filter}`,
           {
             headers: {
-              apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '',
-              Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+              apikey: supabaseKey,
+              Authorization: `Bearer ${supabaseKey}`,
             },
           }
         );
@@ -44,7 +50,7 @@ export default function Home() {
     };
 
     fetchProducts();
-  }, []);
+  }, [categoryParam, supabaseKey, supabaseUrl]);
 
   if (loading) {
     return <div className="products-container"><p className="loading">Cargando productos...</p></div>;

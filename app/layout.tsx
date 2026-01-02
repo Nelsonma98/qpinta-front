@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Geist, Geist_Mono } from "next/font/google";
+import NavMenu from "@/components/NavMenu";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -24,20 +24,7 @@ export default function RootLayout({
             <Link href="/" className="logo-link" aria-label="Ir a inicio">
               <img src="/logo-qpinta.png" alt="Logo" className="logo" />
             </Link>
-            <a href="/admin/login" className="login-button" aria-label="Ir al login">
-              <svg
-                className="login-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Z" />
-                <path d="M5 20.5c0-3.038 3.134-5 7-5s7 1.962 7 5" />
-              </svg>
-            </a>
+            <NavMenu />
           </div>
         </nav>
         {children}

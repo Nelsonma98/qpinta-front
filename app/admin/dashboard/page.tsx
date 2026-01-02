@@ -47,26 +47,14 @@ export default function AdminDashboard() {
         <div className="dashboard-grid">
           <div className="dashboard-card">
             <h2>Productos</h2>
-            <p>Gestiona el catálogo de productos</p>
-            <button>Ver Productos</button>
-          </div>
-          
-          <div className="dashboard-card">
-            <h2>Crear Producto</h2>
-            <p>Añade nuevos productos al catálogo</p>
-            <button>Nuevo Producto</button>
+            <p>Administra los productos</p>
+            <button onClick={() => router.push('/admin/products')}>Ver Productos</button>
           </div>
           
           <div className="dashboard-card">
             <h2>Categorías</h2>
             <p>Administra las categorías</p>
-            <button>Ver Categorías</button>
-          </div>
-          
-          <div className="dashboard-card">
-            <h2>Pedidos</h2>
-            <p>Revisa los pedidos de clientes</p>
-            <button>Ver Pedidos</button>
+            <button onClick={() => router.push('/admin/categories')}>Ver Categorías</button>
           </div>
         </div>
       </div>
