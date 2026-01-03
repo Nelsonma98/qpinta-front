@@ -5,6 +5,8 @@ import { useRouter } from 'next/navigation';
 import { isAdminAuthenticated, getAdminUser, logout } from '@/lib/auth';
 import '../../styles/admin-dashboard.css';
 
+export const dynamic = 'force-dynamic';
+
 export default function AdminDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [adminEmail, setAdminEmail] = useState('');
