@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import NavMenu from "@/components/NavMenu";
 import "./globals.css";
 
@@ -24,7 +25,9 @@ export default function RootLayout({
             <Link href="/" className="logo-link" aria-label="Ir a inicio">
               <img src="/logo-qpinta.png" alt="Logo" className="logo" />
             </Link>
-            <NavMenu />
+            <Suspense fallback={null}>
+              <NavMenu />
+            </Suspense>
           </div>
         </nav>
         {children}
