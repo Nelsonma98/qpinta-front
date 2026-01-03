@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
@@ -15,7 +15,7 @@ interface Product {
   image: string;
 }
 
-export default function Home() {
+function HomeContent() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -68,7 +68,6 @@ export default function Home() {
   if (products.length === 0) {
     return <div className="products-container"><p className="loading">No hay productos disponibles</p></div>;
   }
-
   return (
     <div className="products-container">
       <div className="products-grid">
@@ -90,5 +89,13 @@ export default function Home() {
         ))}
       </div>
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="products-container"><p className="loading">Cargando productos...</p></div>}>
+      <HomeContent />
+    </Suspense>
   );
 }
