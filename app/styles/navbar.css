@@ -34,6 +34,17 @@ nav {
   position: relative;
   display: flex;
   align-items: center;
+  gap: 0.75rem;
+}
+
+.selected-category-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111;
+  padding: 0.35rem 0.65rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .admin-logout-wrapper {
@@ -139,9 +150,12 @@ nav {
   padding: 0.65rem 0.75rem;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 8px;
-  text-decoration: none;
+  background: transparent;
   color: #111;
+  cursor: pointer;
   transition: background 0.2s ease, border-color 0.2s ease;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 .side-menu-login:hover {

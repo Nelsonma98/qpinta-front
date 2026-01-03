@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { logout } from '@/lib/auth';
+import { logout, isAdminAuthenticated } from '@/lib/auth';
 
 interface Category {
   id: string | number;
@@ -15,12 +15,15 @@ export default function NavMenu() {
   const [categories, setCategories] = useState<Category[]>([]);
   const pathname = usePathname();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const isHome = pathname === '/';
   const isAdmin = pathname?.startsWith('/admin');
   const isAdminLogin = pathname === '/admin/login';
+  const categoryParam = searchParams.get('category');
+  const selectedCategory = categories.find(cat => String(cat.id) === categoryParam);
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://uxjprzqkuyrvqclktcat.supabase.co';
   const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
@@ -47,7 +50,7 @@ export default function NavMenu() {
           throw new Error('No se pudieron obtener las categorías');
         }
         const data = await res.json();
-        setCategories(data);
+        setCategories([...data].reverse());
       } catch (err: any) {
         setError(err.message || 'Error cargando categorías');
       } finally {
@@ -78,6 +81,9 @@ export default function NavMenu() {
 
   return (
     <div className="menu-wrapper">
+      {selectedCategory && (
+        <span className="selected-category-label">{selectedCategory.name}</span>
+      )}
       <button
         className="menu-toggle"
         aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
@@ -129,14 +135,20 @@ export default function NavMenu() {
         </div>
 
         <div className="side-menu-footer">
-          <Link
-            href="/admin/login"
+          <button
             className="side-menu-login"
-            onClick={() => setOpen(false)}
+            onClick={() => {
+              setOpen(false);
+              if (isAdminAuthenticated()) {
+                router.push('/admin/dashboard');
+              } else {
+                router.push('/admin/login');
+              }
+            }}
           >
-            <img src="/account_circle.svg" alt="Login" className="side-menu-login-icon" />
-            <span>Login administrador</span>
-          </Link>
+            <img src="/account_circle.svg" alt="Admin" className="side-menu-login-icon" />
+            <span>Panel de Administración</span>
+          </button>
         </div>
       </div>
 

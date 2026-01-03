@@ -22,6 +22,7 @@ export default function ProductDetail() {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const imageBaseUrl = process.env.SUPABESE_IMAGE_URL || 'https://uxjprzqkuyrvqclktcat.supabase.co/storage/v1/object/public/images/';
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -82,7 +83,7 @@ export default function ProductDetail() {
           </svg>
         </Link>
         <div className="product-detail-image">
-          <img src={product.image} alt={`Producto ${product.id}`} />
+          <img src={`${imageBaseUrl}${product.image}`} alt={`Producto ${product.id}`} />
         </div>
         <div className="product-detail-info">
           <h1>Producto #{product.id}</h1>
